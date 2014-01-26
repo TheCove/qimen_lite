@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>奇門穿壬參星</title>
+    <title>奇門遁甲</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script language="JavaScript" src="_js/sprintf.min.js"></script>
@@ -10,9 +10,9 @@
     div   {position: relative}
     table {position: relative}
     form  {position: relative}
-    tr    {position: relative}
-    td    {position: relative}
-    input {position: relative;top:0;left:0;right:0;bottom:0;width:100%;height:100%}
+    tr    {position: relative;height: 7mm}
+    td    {position: relative;padding:0}
+    input, select {position: relative;top:0;left:0;right:0;bottom:0;width:100%;height:100%;border:0;padding:0}
     </style>
     <script language="javascript" src="_js/jquery.min.js"></script>
     <script language="javascript" src="_js/jiqi.js"></script>
@@ -139,6 +139,8 @@
           while(using_kook > 9) using_kook -= 9;
         }
       }
+      if($('#cboDun').val() < 2) dun_type = $('#cboDun').val();
+      if($('#cboKook').val() > 0) using_kook = $('#cboKook').val();
       //console.log("using_kook",using_kook);
       out += "陰陽".charAt(dun_type)+"遁"+" 一二三四五六七八九".charAt(using_kook)+"局"+"\r\n";
       // 輸出柱名
@@ -255,18 +257,41 @@
     <div>
       <form onsubmit="return false">
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
-          <tr style="height:10mm">
+          <tr>
             <td colspan="4">
-              <input type="text" name="txtDate" />
+              <input type="text" name="txtDate" style='border:1' />
             </td>
             <td>
-              <input type="button" value="當下" onclick="calc_now()" />
+              <input type="button" value="當下" onclick="$('#cboDun :nth-child(1)').prop('selected', true);$('#cboKook :nth-child(1)').prop('selected', true);calc_now()" />
             </td>
             <td>
               <input type="button" value="計算" onclick="calc()" />
             </td>
           </tr>
-          <tr style="height:10mm">
+          <tr>
+            <td colspan='2'><select id='cboDun' style='height:100%;width:100%'>
+              <option value='2' selected>自動遁數</option>
+              <option value='0'>陰遁</option>
+              <option value='1'>陽遁</option>
+              </select>
+              </td>
+            <td colspan='2'><select id='cboKook' style='height:100%;width:100%'>
+              <option value='0' selected>自動局數</option>
+              <option value='1'>一局</option>
+              <option value='2'>二局</option>
+              <option value='3'>三局</option>
+              <option value='4'>四局</option>
+              <option value='5'>五局</option>
+              <option value='6'>六局</option>
+              <option value='7'>七局</option>
+              <option value='8'>八局</option>
+              <option value='9'>九局</option>
+              </select>
+              </td>
+            <td colspan='2'><input type='button' style='height:100%;width:100%' value='重算' onclick='calc_qimen();'>
+              </td>
+          </tr>
+          <tr>
             <script language="JavaScript">
             (function abc() {
               var a = ['年','月','日','時','分','秒'];
@@ -278,7 +303,7 @@
             })();
             </script>
           </tr>
-          <tr style="height:10mm">
+          <tr>
             <script language="JavaScript">
             (function abc() {
               var a = ['年','月','日','時','分','秒'];
