@@ -174,12 +174,18 @@
       //
       // var qq = new Array;
       // for(var i = 1; i < 10; i++) qq[i] = QIMEN_STAR.qimenCalc(dun_type,i,jiqi.bazi.substr(6,2));
-      var gon = " 987654321987654321987654321".indexOf(using_kook,5);console.log('gon',gon);
-      var gon = " 987654321987654321987654321".substring(gon-5,gon+5);
-      console.log('gon',gon);
+      //var gon = " 987654321987654321987654321".indexOf(using_kook,5);console.log('gon',gon);
+      //var gon = " 987654321987654321987654321".substring(gon-5,gon+5);
+      //console.log('gon',gon);
+      if(dun_type == 1) {
+        var gon = " 123456789";
+      } else {
+        var gon = " 987654321";
+      }
       for(var jj = 1; jj < 10; jj++) {
         var ot = $('#tpltable').text().split("\n");
         var qq = QIMEN_STAR.qimenCalc(dun_type,gon[jj],jiqi.bazi.substr(6,2));
+        //var qq = QIMEN_STAR.qimenCalc(dun_type,jj,jiqi.bazi.substr(6,2));
         for(var i = 0; i < 9; i++) {
           var idx = [[12,7],[2,12],[7,2],[2,2],[7,7],[12,12],[7,12],[12,2],[2,7]];
           var sy = idx[i][0], sx = idx[i][1];
