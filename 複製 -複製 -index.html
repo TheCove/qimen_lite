@@ -178,10 +178,12 @@
       //var gon = " 987654321987654321987654321".substring(gon-5,gon+5);
       //console.log('gon',gon);
       if(dun_type == 1) {
-        var gon = " 123456789";
+        var gon = " 123456789123456789123456789";
       } else {
-        var gon = " 987654321";
+        var gon = " 987654321987654321987654321";
       }
+      var gon2 = gon.indexOf(using_kook,5);console.log('gon2',gon2,gon);
+      gon = gon.substring(gon2-5,gon2+5);console.log('go:',gon);
       for(var jj = 1; jj < 10; jj++) {
         var ot = $('#tpltable').text().split("\n");
         var qq = QIMEN_STAR.qimenCalc(dun_type,gon[jj],jiqi.bazi.substr(6,2));
