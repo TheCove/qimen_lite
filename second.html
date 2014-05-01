@@ -174,30 +174,21 @@
       // setup info 
       $('#info').html(out);
       //
-      var gn = {'符':'值符','蛇':'騰蛇','陰':'太陰','合':'六合','白':'白虎','玄':'玄武','地':'九地','天':'九天'};
       var idx = [[12,7],[2,12],[7,2],[2,2],[7,7],[12,12],[7,12],[12,2],[2,7]];
       for(var i = 0; i < 9; i++) {
         var sy = idx[i][0], sx = idx[i][1];
-        // 時家奇門\
-        ot[sy+0] = ot[sy+0].replaceAt(sx+2,'門');
-        ot[sy+0] = ot[sy+0].replaceAt(sx+1,q1['門'][i+1]);
-        if(i != 4)ot[sy+1] = ot[sy+1].replaceAt(sx+1,gn[q1['神'][i+1]]);
-        
-        
-        ot[sy+2] = ot[sy+2].replaceAt(sx+1,'天');
-        ot[sy+2] = ot[sy+2].replaceAt(sx+2,q1['星'][i+1]);
-        
-        ot[sy+2] = ot[sy+2].replaceAt(sx+3,q1['天'][i+1]);
-        
-        ot[sy+3] = ot[sy+3].replaceAt(sx+3,q1['地'][i+1]);
-        /**
+        // 時家奇門
+        ot[sy+0] = ot[sy+0].replaceAt(sx+0,q1['門'][i+1]);
+        ot[sy+0] = ot[sy+0].replaceAt(sx+1,q1['神'][i+1]);
+        ot[sy+0] = ot[sy+0].replaceAt(sx+2,q1['天'][i+1]);
+        ot[sy+1] = ot[sy+1].replaceAt(sx+1,q1['星'][i+1]);
+        ot[sy+1] = ot[sy+1].replaceAt(sx+2,q1['地'][i+1]);
         // 秒家奇門
         ot[sy+2] = ot[sy+2].replaceAt(sx+1,q2['門'][i+1]);
         ot[sy+2] = ot[sy+2].replaceAt(sx+2,q2['神'][i+1]);
         ot[sy+2] = ot[sy+2].replaceAt(sx+3,q2['天'][i+1]);
         ot[sy+3] = ot[sy+3].replaceAt(sx+2,q2['星'][i+1]);
         ot[sy+3] = ot[sy+3].replaceAt(sx+3,q2['地'][i+1]);
-        **/
         
       }
       // 計貴人
@@ -265,7 +256,7 @@
   <body>
     <div>
       <form onsubmit="return false">
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="display:none" id='frmInput'>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
             <td colspan="4">
               <input type="text" name="txtDate" style='border:1' />
@@ -325,7 +316,7 @@
             </script>
           </tr>
         </table>
-        <div onclick="$('#frmInput').toggle()"><pre id="info"></pre></div>
+        <div><pre id="info"></pre></div>
         <div><pre id="output"></pre></div>
         <pre style="visibility:hidden" id="tpltable">＋　　　　　｜　　　　｜　　　　　＋
 　＋－－－－＋－－－－＋－－－－＋　
