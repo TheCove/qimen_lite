@@ -61,7 +61,7 @@
       var h = (id.substr(9,2))*1;
       var i = (id.substr(11,2))*1;
       var s = (id.substr(13,2))*1;
-      gbl_date = new Date(y,m,d,h,i,s);
+      gbl_date = new Date(y,m-1,d,h,i,s);
       // cal qimen;
       calc_qimen();
     }
@@ -179,15 +179,17 @@
       for(var i = 0; i < 9; i++) {
         var sy = idx[i][0], sx = idx[i][1];
         // 時家奇門\
-        ot[sy+0] = ot[sy+0].replaceAt(sx+2,'門');
-        ot[sy+0] = ot[sy+0].replaceAt(sx+1,q1['門'][i+1]);
-        if(i != 4)ot[sy+1] = ot[sy+1].replaceAt(sx+1,gn[q1['神'][i+1]]);
-        
-        
-        ot[sy+2] = ot[sy+2].replaceAt(sx+1,'天');
-        ot[sy+2] = ot[sy+2].replaceAt(sx+2,q1['星'][i+1]);
-        
-        ot[sy+2] = ot[sy+2].replaceAt(sx+3,q1['天'][i+1]);
+        if(i != 4) {
+          ot[sy+0] = ot[sy+0].replaceAt(sx+2,'門');
+          ot[sy+0] = ot[sy+0].replaceAt(sx+1,q1['門'][i+1]);
+          ot[sy+1] = ot[sy+1].replaceAt(sx+1,gn[q1['神'][i+1]]);
+          ot[sy+2] = ot[sy+2].replaceAt(sx+1,'天');
+          ot[sy+2] = ot[sy+2].replaceAt(sx+2,q1['星'][i+1]);
+          ot[sy+2] = ot[sy+2].replaceAt(sx+3,q1['天'][i+1]);
+        }
+        if(q1['星'][i+1] == '苪') {
+          ot[sy+2] = ot[sy+2].replaceAt(sx+0,q1['天'][5]);
+        }
         
         ot[sy+3] = ot[sy+3].replaceAt(sx+3,q1['地'][i+1]);
         /**
