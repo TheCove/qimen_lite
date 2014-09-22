@@ -11,7 +11,7 @@
     table {position: relative}
     form  {position: relative}
     tr    {position: relative;height: 7mm}
-    td    {position: relative;padding:0}
+    td    {position: relative;padding:0;height: 12mm}
     input, select {position: relative;top:0;left:0;right:0;bottom:0;width:100%;height:100%;border:0;padding:0}
     </style>
     <script language="javascript" src="_js/jquery.min.js"></script>
@@ -96,9 +96,9 @@
     function calc_qimen() {
       var d = new Date(gbl_date);
       var jiqi = QIMEN_STAR.jiqi.GetJiqiInfo(
-        d.getFullYear(),d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes(),d.getSeconds());
+        d.getFullYear(),d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes(),d.getSeconds(),d.getMilliseconds());
       //console.log(jiqi);
-      var out  = sprintf("%s\r\n",QIMEN_STAR.jiqi.JTime(jiqi.julian));
+      var out  = sprintf("%s%03d\r\n",QIMEN_STAR.jiqi.JTime(jiqi.julian),d.getMilliseconds());
           out += sprintf("%s\r\n",QIMEN_STAR.Solar2Lunar(d.getFullYear(),d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes(),d.getSeconds()));      
           var cjiqi = jiqi.currentJiqiIdx - 1; if(cjiqi < 0) cjiqi = 23;
           out += sprintf("當前節氣: %s, %s\r\n",jiqi.jiqi[cjiqi],QIMEN_STAR.jiqi.JTime(jiqi.wholeYear[cjiqi]));
@@ -149,10 +149,11 @@
         out += "　"+"　年　月　日　時　分　秒毫秒不知未明疑問".substr(i,2);
       } out += "\r\n";
       // 輸出八字
-      out += ("八字：");
+      out += ("八字：");console.log(jiqi.bazi);
       for(var i = 0; i < jiqi.bazi.length; i += 2) out+=("　"+jiqi.bazi.substr(i, 2));
       out+=("\r\n");
       // 計空亡
+      var _hung_mon = new Array();
       out += ("空亡：");
       for(var i = 0; i < jiqi.bazi.length; i+=2) {
         var chun_sau = "子丑寅卯辰巳午未申酉戌亥".indexOf(jiqi.bazi[i+1]) - "甲乙丙丁戊己庚辛壬癸".indexOf(jiqi.bazi[i]);
@@ -160,6 +161,7 @@
         var hung_mon = chun_sau - 2;
         if(hung_mon < 0) hung_mon += 12;
         out += ("　"+"子丑寅卯辰巳午未申酉戌亥".substr(hung_mon, 2));
+        _hung_mon.push(hung_mon);
       }
        out += ("\r\n");
        
@@ -200,7 +202,13 @@
         ot[sy+3] = ot[sy+3].replaceAt(sx+2,q2['星'][i+1]);
         ot[sy+3] = ot[sy+3].replaceAt(sx+3,q2['地'][i+1]);
         **/
-        
+        // 時家奇門空亡
+          var a = "077233811655".charAt(_hung_mon[3]);
+          var sy = idx[a][0], sx = idx[a][1];
+          ot[sy+0] = ot[sy+0].replaceAt(sx+0,'Ｏ');
+          var a = "077233811655".charAt(_hung_mon[3]+1);
+          var sy = idx[a][0], sx = idx[a][1];
+          ot[sy+0] = ot[sy+0].replaceAt(sx+0,'Ｏ');
       }
       // 計貴人
       (function() {

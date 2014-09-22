@@ -96,9 +96,9 @@
     function calc_qimen() {
       var d = new Date(gbl_date);
       var jiqi = QIMEN_STAR.jiqi.GetJiqiInfo(
-        d.getFullYear(),d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes(),d.getSeconds());
+        d.getFullYear(),d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes(),d.getSeconds(),d.getMilliseconds());
       //console.log(jiqi);
-      var out  = sprintf("%s\r\n",QIMEN_STAR.jiqi.JTime(jiqi.julian));
+      var out  = sprintf("%s%03d\r\n",QIMEN_STAR.jiqi.JTime(jiqi.julian),d.getMilliseconds());
           out += sprintf("%s\r\n",QIMEN_STAR.Solar2Lunar(d.getFullYear(),d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes(),d.getSeconds()));      
           var cjiqi = jiqi.currentJiqiIdx - 1; if(cjiqi < 0) cjiqi = 23;
           out += sprintf("當前節氣: %s, %s\r\n",jiqi.jiqi[cjiqi],QIMEN_STAR.jiqi.JTime(jiqi.wholeYear[cjiqi]));
@@ -258,7 +258,7 @@
       <form onsubmit="return false">
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
-            <td colspan="4">
+            <td colspan="4" style='height:15mm'>
               <input type="text" name="txtDate" style='border:1' />
             </td>
             <td>
@@ -269,7 +269,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan='2'><select id='cboDun' style='height:100%;width:100%'>
+            <td colspan='2'  style='height:15mm'><select id='cboDun' style='height:100%;width:100%'>
               <option value='2' selected>自動遁數</option>
               <option value='0'>陰遁</option>
               <option value='1'>陽遁</option>
@@ -297,7 +297,7 @@
               var a = ['年','月','日','時','分','秒'];
               for(var i in a) {
                 document.write(
-                  sprintf('<td><input type="button" value="+%s" onclick="tuneDate(this)" /></td>',a[i])
+                  sprintf('<td style="height:15mm"><input type="button" value="+%s" onclick="tuneDate(this)" /></td>',a[i])
                 );
               }
             })();
@@ -309,7 +309,7 @@
               var a = ['年','月','日','時','分','秒'];
               for(var i in a) {
                 document.write(
-                  sprintf('<td><input type="button" value="-%s" onclick="tuneDate(this)" /></td>',a[i])
+                  sprintf('<td style="height:15mm"><input type="button" value="-%s" onclick="tuneDate(this)" /></td>',a[i])
                 );
               }
             })();
