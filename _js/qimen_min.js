@@ -72,8 +72,8 @@ if(typeof(QIMEN_STAR) == "undefined") var QIMEN_STAR = {};
     // 找值符
     var chun_sau = " 子戌申午辰寅".indexOf("子寅辰午申戌".charAt(parseInt(chun_sau/2)));
     var chun_sau_org = " 子戌申午辰寅".indexOf("子寅辰午申戌".charAt(parseInt(chun_sau_org/2)));
-    var chun_sau_org = " 戊己庚辛壬癸".charAt(chun_sau_org);//console.log(chun_sau_org);
-    var chun_sau_org = dei_pan.indexOf(chun_sau_org)+1;//console.log(chun_sau_org);
+		chun_sau_org = " 戊己庚辛壬癸".charAt(chun_sau_org);//console.log(chun_sau_org);
+		chun_sau_org = dei_pan.indexOf(chun_sau_org)+1;//console.log(chun_sau_org);
     if(chun_sau_org == 5) chun_sau_org = 2;
     // step 2
     var jik_fu_idx = 0;
